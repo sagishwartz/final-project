@@ -9,7 +9,6 @@ is it in?
 Implement the function def get_state(capital): below so it returns the state.
 GOTCHAS: What happens if two states have the same capital name, how do you
 handle that?
-
 """
 import sys
 
@@ -68,29 +67,32 @@ STATES_CAPITALS = {
     'Wyoming' : 'Cheyenne',
 }
 
-
 def capital_of_Idaho():
-    # Your code here
+    print(STATES_CAPITALS['Idaho'])
     pass
 
 def all_states():
-    # Your code here
+    for k in STATES_CAPITALS.keys():
+        print(k)
     pass
 
 def all_capitals():
-    # Your code here
+    for v in STATES_CAPITALS.values():
+        print(v)
     pass
 
 def states_capitals_string():
-    # Your code here
+    result = ''.join(['{0} -> {1}, '.format(k, STATES_CAPITALS[k]) for k in sorted(STATES_CAPITALS.keys())])
+    print(result)
     pass
-
-
 
 def get_state(capital):
+    keys = [k for k, v in STATES_CAPITALS.items() if v == capital]
+    if len(keys) > 0:
+        return keys[0]
+    else:
+        raise KeyError
     pass
-
-
 
 def test_state_to_capital():
     assert 'Cheyenne' == STATES_CAPITALS['Wyoming']
